@@ -20,14 +20,14 @@ namespace RestSharpTesting.Steps
         //public RestClient client = new RestClient("http://localhost:63812/");
         //public RestRequest request = new RestRequest();
         //public IRestResponse<Posts> response = new RestResponse<Posts>();
-
+        
         [Given(@"As an application user, I fetch all users details")]
         public void GivenAsAnApplicationUserIFetchAllUsersDetails()
         {   
             var endPoint = "getAllUsers";
             _settings.Request = new RestRequest(endPoint, Method.GET);
             _settings.Response = _settings.Client.Execute<User>(_settings.Request);
-            //Console.WriteLine(_settings.Response.Data.id);
+            
         }
 
         [Then(@"I should receive all available users")]
@@ -40,13 +40,14 @@ namespace RestSharpTesting.Steps
 
         }
 
-        [Given(@"As an application user, I fetch details of user with Id (.*)")]
+        [Given(@"As an application user, I fetch details of user with Id ""(.*)""")]
         public void GivenAsAnApplicationUserIFetchDetailsOfUserWithId(string userID)
         {
             var endPoint = "getUsers/{id}";
             _settings.Request = new RestRequest(endPoint, Method.GET);
             _settings.Request.AddUrlSegment("id", userID);
-            _settings.Response = _settings.Client.Execute<User>(_settings.Request);//.GetAwaiter().GetResult();
+            _settings.Response = _settings.Client.Execute<User>(_settings.Request);
+            //var firstName = _settings.Response.Data.FirstName;
         }
 
         [Then(@"I should receive the First Name as ""(.*)""")]
