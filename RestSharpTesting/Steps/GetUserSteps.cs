@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using RestSharp;
+using RestSharp.Serialization.Json;
 using RestSharpTesting.Base;
 using RestSharpTesting.Model;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -17,147 +19,192 @@ namespace RestSharpTesting.Steps
             _settings = settings;
         }
 
-        //public RestClient client = new RestClient("http://localhost:63812/");
-        //public RestRequest request = new RestRequest();
-        //public IRestResponse<Posts> response = new RestResponse<Posts>();
-        
+     
         [Given(@"As an application user, I fetch all users details")]
         public void GivenAsAnApplicationUserIFetchAllUsersDetails()
         {   
-            var endPoint = "getAllUsers";
-            _settings.Request = new RestRequest(endPoint, Method.GET);
-            _settings.Response = _settings.Client.Execute<User>(_settings.Request);
-            
+            _settings.EndPoint = "getAllUsers";
+            _settings.Request = new RestRequest(_settings.EndPoint, Method.GET);
+            _settings.Response1 = _settings.Client.Execute(_settings.Request);
+            _settings.user = new JsonDeserializer().Deserialize<List<dynamic>>(_settings.Response1);
+
+            foreach (var userDetails in _settings.user)
+            {
+                var _user1 = new User()
+                {
+                    Id = Convert.ToInt32(userDetails["Id"]),
+                    FirstName = (userDetails["FirstName"])
+                };
+            }
         }
 
         [Then(@"I should receive all available users")]
         public void ThenIShouldReceiveAllAvailableUsers()
         {
-            string key = "StatusCode";
-            int value = 200;
-            _settings.StatusCode = (int)_settings.Response.StatusCode;
-            Assert.That(_settings.StatusCode, Is.EqualTo(value), $"The {key} is not {value}");
+            _settings.StatusCodeValue = 200;
+            _settings.StatusCode = (int)_settings.Response1.StatusCode;
+            Assert.That(_settings.StatusCode, Is.EqualTo(_settings.StatusCodeValue), $"The Status Code is not {_settings.StatusCodeValue}");
 
         }
 
         [Given(@"As an application user, I fetch details of user with Id ""(.*)""")]
         public void GivenAsAnApplicationUserIFetchDetailsOfUserWithId(string userID)
         {
-            var endPoint = "getUsers/{id}";
-            _settings.Request = new RestRequest(endPoint, Method.GET);
+            _settings.EndPoint = "getUsers/{id}";
+            _settings.Request = new RestRequest(_settings.EndPoint, Method.GET);
             _settings.Request.AddUrlSegment("id", userID);
-            _settings.Response = _settings.Client.Execute<User>(_settings.Request);
-            //var firstName = _settings.Response.Data.FirstName;
+            _settings.Response1 = _settings.Client.Execute(_settings.Request);
+            _settings.StatusCodeString = _settings.Response1.StatusCode.ToString();
+            if (!_settings.StatusCodeString.Equals("BadRequest"))
+            {
+                _settings.user = new JsonDeserializer().Deserialize<dynamic>(_settings.Response1);
+
+                _settings._user = new User()
+                {
+                    Id = Convert.ToInt32(_settings.user["id"]),
+                    FirstName = _settings.user["first_name"],
+                    LastName = _settings.user["first_name"],
+                    PositionId = Convert.ToInt32(_settings.user["position_id"]),
+                    MobileNo = _settings.user["mob_no"],
+                    Alt_MobNo = _settings.user["alt_mob_no"],
+                    Email = _settings.user["email"],
+                    isDeleted = Convert.ToBoolean(_settings.user["isDeleted"]),
+                    address = new Address()
+                    {
+                        Id = _settings.user["address"]["id"],
+                    }
+
+
+                };
+             }
         }
 
         [Then(@"I should receive the First Name as ""(.*)""")]
         public void ThenIShouldReceiveTheFirstNameAs(string firstName)
         {
-            string key = "StatusCode";
-            int value = 200;
-            //Console.WriteLine(_settings.Response.Data.first_name);
-            _settings.StatusCode = (int)_settings.Response.StatusCode;
-            Assert.That(_settings.StatusCode, Is.EqualTo(value), $"The {key} is not {value}");
-            Assert.That(_settings.Response.Data.FirstName, Is.EqualTo(firstName), $"The first name is not associated with the provided id");
+            _settings.StatusCodeValue = 200;
+            _settings.StatusCode = (int)_settings.Response1.StatusCode;
+            Assert.That(_settings.StatusCode, Is.EqualTo(_settings.StatusCodeValue), $"The StatusCOde is not {_settings.StatusCodeValue}");
+            Assert.That(_settings._user.FirstName, Is.EqualTo(firstName), $"The first name is not associated with the provided id");
         }
 
         [Then(@"I should not receive the user with that id")]
         public void ThenIShouldNotReceiveTheUserWithThatId()
         {
-            string key = "StatusCode";
-            int value = 400;
-            _settings.StatusCode = (int)_settings.Response.StatusCode;
-            Assert.That(_settings.StatusCode, Is.EqualTo(value), $"The {key} is not {value}");
+            _settings.StatusCodeValue = 400;
+            _settings.StatusCode = (int)_settings.Response1.StatusCode;
+            Assert.That(_settings.StatusCode, Is.EqualTo(_settings.StatusCodeValue), $"The StatusCode is not {_settings.StatusCodeValue}");
         }
 
         [Given(@"As an application user, I will enter the below details")]
         public void GivenAsAnApplicationUserIWillEnterTheBelowDetails(Table table)
         {
-            dynamic data = table.CreateDynamicInstance();
-            var endPoint = "createUser";
-            _settings.Request = new RestRequest(endPoint, Method.POST);
+            _settings.Data = table.CreateDynamicInstance();
+            _settings.EndPoint = "createUser";
+            _settings.Request = new RestRequest(_settings.EndPoint, Method.POST);
             _settings.Request.RequestFormat = DataFormat.Json;
-            _settings.Request.AddBody(new User()
+            _settings.Request.AddBody(new UserPost()
             {
-                Id = data.id,
-                FirstName = data.first_name.ToString(),
-                LastName = data.last_name.ToString(),
-                PositionId = data.position_id,
-                OrganisationId = data.organisation_id,
-                AddressID = data.address_id,
-                MobileNo = data.mob_no.ToString(),
-                Alt_MobNo = data.alt_mob_no.ToString(),
-                Email = data.email.ToString(),
-                isDeleted = data.isDeleted,
-                address = new Address()
+                Id = _settings.Data.id,
+                First_Name = _settings.Data.first_name,
+                Last_Name = _settings.Data.last_name.ToString(),
+                Position_Id = _settings.Data.position_id,
+                Organisation_Id = _settings.Data.organisation_id,
+                Address_ID = _settings.Data.address_id,
+                Mob_No = _settings.Data.mob_no.ToString(),
+                Alt_Mob_No = _settings.Data.alt_mob_no.ToString(),
+                Email = _settings.Data.email.ToString(),
+                isDeleted = _settings.Data.isDeleted,
+                address = new Address1()
                 {
-                    Id = data.add_id,
-                    AddressType = data.add_type,
-                    Street1 = data.street_1,
-                    Street2 = data.street_2,
-                    StateId = data.street_id,
-                    Pincode = data.pin_code.ToString()
+                    Id = _settings.Data.add_id,
+                    Address_Type = _settings.Data.add_type,
+                    Street = _settings.Data.street_1,
+                    Street_2 = _settings.Data.street_2,
+                    State_Id = _settings.Data.street_id,
+                    Pincode = _settings.Data.pin_code.ToString()
                 }
 
             });
-            _settings.Response = _settings.Client.Execute<User>(_settings.Request);
+            _settings.ResponsePost = _settings.Client.Execute<UserPost>(_settings.Request);
 
         }
 
         [Then(@"I should get a ""(.*)"" response")]
         public void ThenIShouldGetAResponse(string status)
         {
-            _settings.StatusCodeString = _settings.Response.StatusCode.ToString();
+            _settings.StatusCodeString = _settings.ResponsePost.StatusCode.ToString();
             Assert.That(_settings.StatusCodeString, Is.EqualTo(status), $"The Status is not correct");
         }
 
         [Given(@"As an application user, I will not enter any detail")]
         public void GivenAsAnApplicationUserIWillNotEnterAnyDetail()
         {
-            var endPoint = "createUser";
-            _settings.Request = new RestRequest(endPoint, Method.POST);
+            _settings.EndPoint = "createUser";
+            _settings.Request = new RestRequest(_settings.EndPoint, Method.POST);
             _settings.Request.RequestFormat = DataFormat.Json;
             _settings.Request.AddBody(null);
-            _settings.Response = _settings.Client.Execute<User>(_settings.Request);
+            _settings.ResponsePost = _settings.Client.Execute<UserPost>(_settings.Request);
         }
 
-        
-
-
-
-
-
-
-
-
-
-        [Given(@"I perform GET operation for ""(.*)""")]
-        public void GivenIPerformGETOperationFor(string url)
+        [Given(@"As an application user, I fetch details of the created user")]
+        public void GivenAsAnApplicationUserIFetchDetailsOfTheCreatedUser()
         {
-            _settings.Request = new RestRequest(url, Method.GET);
+            _settings.EndPoint = "getAllUsers";
+            _settings.Request = new RestRequest(_settings.EndPoint, Method.GET);
+            _settings.Response1 = _settings.Client.Execute(_settings.Request);
+            _settings.user = new JsonDeserializer().Deserialize<List<dynamic>>(_settings.Response1);
+
+            foreach (var userDetails in _settings.user)
+            {
+                _settings._user = new User()
+                {
+
+                    Id = Convert.ToInt32(userDetails["Id"]),
+                    FirstName = userDetails["FirstName"],
+                    LastName = userDetails["LastName"],
+                    //PositionId = Convert.ToInt32(userDetails["PositionID"]),
+                    MobileNo = userDetails["MobileNo"],
+                    //Alt_MobNo = userDetails["Alt_MobNO"],
+                    Email = userDetails["Email"],
+                    isDeleted = Convert.ToBoolean(userDetails["isDeleted"]),
+                };
+                
+            }
         }
 
-        [Given(@"I perform operation for ID ""(.*)""")]
-        public void GivenIPerformOperationForID(String userID)
+        [Then(@"I should get the correct details")]
+        public void ThenIShouldGetTheCorrectDetails()
         {
+            if (_settings._user.FirstName.Equals(_settings.Data.first_name))
+            {
+                _settings.StatusCodeValue = 200;
+                _settings.StatusCode = (int)_settings.Response1.StatusCode;
+                Assert.That(_settings.StatusCode, Is.EqualTo(_settings.StatusCodeValue), $"The Status Code is not {_settings.StatusCodeValue}");
+                Assert.That(_settings._user.FirstName, Is.EqualTo(_settings.Data.first_name), $"The First Name is not correct");
+                Assert.That(_settings._user.LastName, Is.EqualTo(_settings.Data.last_name.ToString()), $"The Last Name is not correct");
+                Assert.That(_settings._user.MobileNo, Is.EqualTo(_settings.Data.mob_no.ToString()), $"The Mobile number is not correct");
+                Assert.That(_settings._user.Email, Is.EqualTo(_settings.Data.email.ToString()), $"The Email ID is not correct");
+
+            }
+        }
+
+        [Given(@"As an application user, I delete the user with id ""(.*)""")]
+        public void GivenAsAnApplicationUserIDeleteTheUserWithId(string userID)
+        {
+            _settings.EndPoint = "deleteUsers/{id}";
+            _settings.Request = new RestRequest(_settings.EndPoint, Method.DELETE);
             _settings.Request.AddUrlSegment("id", userID);
-            _settings.Response = _settings.Client.Execute<User>(_settings.Request);// GetAwaiter().GetResult();
-        }
-
-
-
-        [Given(@"I execute operation")]
-        public void GivenIPerformGETOperation()
-        {
             _settings.Response = _settings.Client.Execute<User>(_settings.Request);
+
         }
 
-        [Given(@"I perform POST operation for ""(.*)""")]
-        public void GivenIPerformPOSTOperationFor(string url)
+        [Then(@"The user should be deleted")]
+        public void ThenTheUserShouldBeDeleted()
         {
-            _settings.Request = new RestRequest(url, Method.POST);
+            _settings.StatusCodeValue = 200;
+            _settings.StatusCode = (int)_settings.Response.StatusCode;
+            Assert.That(_settings.StatusCode, Is.EqualTo(_settings.StatusCodeValue), $"The StatusCode is not {_settings.StatusCodeValue}");
         }
-
-
     }
 }

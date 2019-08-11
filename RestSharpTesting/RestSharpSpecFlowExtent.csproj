@@ -133,149 +133,37 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base\Settings.cs" />
-    <Compile Include="Features\Delete.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Delete.feature</DependentUpon>
-    </Compile>
     <Compile Include="Features\GetAllUsers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetAllUsers.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\GetAllUsersWrongMethod.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetAllUsersWrongMethod.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GetAllUsersWrongURL.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetAllUsersWrongURL.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GetUserById.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetUserById.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GetUserByIdWrongDataType.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetUserByIdWrongDataType.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GetUserByIdWrongMethod.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetUserByIdWrongMethod.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GetUserByIdWrongURL.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetUserByIdWrongURL.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\PostAndGet.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostAndGet.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\PostWithBody.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostWithBody.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\PostWithoutBody.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostWithoutBody.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\PostWithWrongMethod.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostWithWrongMethod.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\PostWithWrongURL.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostWithWrongURL.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\UpdateUser.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UpdateUser.feature</DependentUpon>
-    </Compile>
     <Compile Include="Hooks\TestInitialize.cs" />
     <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\Address1.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Steps\DeleteUserSteps.cs" />
+    <Compile Include="Model\UserPost.cs" />
     <Compile Include="Steps\GetUserSteps.cs" />
-    <Compile Include="Steps\PostUserSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\UpdateUserSteps.cs" />
     <Compile Include="Utilities\Libraries.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\Delete.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Delete.feature.cs</LastGenOutput>
-    </None>
     <None Include="Features\GetAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetAllUsers.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\GetAllUsersWrongMethod.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetAllUsersWrongMethod.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\GetAllUsersWrongURL.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetAllUsersWrongURL.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\GetUserById.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetUserById.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\GetUserByIdWrongDataType.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetUserByIdWrongDataType.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\GetUserByIdWrongMethod.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetUserByIdWrongMethod.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\GetUserByIdWrongURL.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetUserByIdWrongURL.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\PostAndGet.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostAndGet.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\PostWithBody.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostWithBody.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\PostWithoutBody.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostWithoutBody.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\PostWithWrongMethod.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostWithWrongMethod.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\PostWithWrongURL.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostWithWrongURL.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\UpdateUser.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>UpdateUser.feature.cs</LastGenOutput>
     </None>
     <None Include="license" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="extent-config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\kunal.goel\Source\Repos\ContactCardAPI\Contact.DataAccess\Contact.DataAccess.csproj">
+      <Project>{dd8bb5a3-1a1f-477a-a005-a08ab2aaa5bf}</Project>
+      <Name>Contact.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

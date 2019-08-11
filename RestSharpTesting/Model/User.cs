@@ -13,6 +13,6 @@ namespace RestSharpTesting.Model
         public string MobileNo { get; set; }
         public string Alt_MobNo { get; set; }
         public bool isDeleted { get; set; }
-        public Address address { get; internal set; }
+        public Address address { get; set; }
     }
 }

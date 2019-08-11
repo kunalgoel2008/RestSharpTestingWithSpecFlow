@@ -146,22 +146,22 @@ this.ScenarioInitialize(scenarioInfo);
                         "street_id",
                         "pin_code"});
             table1.AddRow(new string[] {
-                        "24",
-                        "Kunal",
-                        "Goel",
+                        "23",
+                        "KG",
+                        "G",
                         "1",
                         "1",
                         "1",
-                        "9999123987",
-                        "abcdefghij",
-                        "a@g.com",
+                        "absd",
+                        "injh",
+                        "kj@hn.com",
                         "false",
-                        "5",
+                        "12",
                         "6411641C-F93C-4923-8D28-21FD0F36ADD6",
-                        "ABC",
-                        "PQR",
+                        "asdf",
+                        "sedr",
                         "1",
-                        "110098"});
+                        "110090"});
 #line 19
  testRunner.Given("As an application user, I will enter the below details", ((string)(null)), table1, "Given ");
 #line 22
@@ -213,7 +213,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "street_id",
                         "pin_code"});
             table2.AddRow(new string[] {
-                        "24",
+                        "4",
                         "Kunal",
                         "Goel",
                         "1",
@@ -223,7 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "abcdefghij",
                         "a@g.com",
                         "false",
-                        "5",
+                        "2",
                         "6411641C-F93C-4923-8D28-21FD0F36ADD6",
                         "ABC",
                         "PQR",
@@ -232,7 +232,25 @@ this.ScenarioInitialize(scenarioInfo);
 #line 29
  testRunner.Given("As an application user, I will enter the below details", ((string)(null)), table2, "Given ");
 #line 32
- testRunner.And("As an application user, I fetch details of user with Id <id>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("As an application user, I fetch details of the created user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+ testRunner.Then("I should get the correct details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As an application user, When I want to delete a user")]
+        public virtual void AsAnApplicationUserWhenIWantToDeleteAUser()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As an application user, When I want to delete a user", null, ((string[])(null)));
+#line 35
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 36
+ testRunner.Given("As an application user, I delete the user with id \"46\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
+ testRunner.Then("The user should be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
