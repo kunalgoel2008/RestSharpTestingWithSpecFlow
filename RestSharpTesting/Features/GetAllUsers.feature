@@ -18,7 +18,7 @@ Scenario: As an application user, When I fetch a particular user by Id with diff
 Scenario: As an application user, When I create a user
 	Given As an application user, I will enter the below details
 	 | id | first_name | last_name | position_id | organisation_id | address_id | mob_no | alt_mob_no | email     | isDeleted | add_id | add_type                             | street_1 | street_2 | street_id | pin_code |
-	 | 23 | KG         | G         | 1           | 1               | 1          | absd   | injh       | kj@hn.com | false     | 12      | 6411641C-F93C-4923-8D28-21FD0F36ADD6 | asdf     | sedr     | 1         | 110090   |
+	 | 23 | KG         | G         | 1           | 1               | 1          | absd   | injh       | kj@hn.com | false     | 13      | 6411641C-F93C-4923-8D28-21FD0F36ADD6 | asdf     | sedr     | 1         | 110090   |
 	Then I should get a "OK" response
 	
 Scenario: As an application user, When I create a user without giving any details
@@ -33,5 +33,5 @@ Scenario: As an application user, When I create a user and fetch its details
 	Then I should get the correct details
 
 Scenario: As an application user, When I want to delete a user
-	Given As an application user, I delete the user with id "46"
+	Given As an application user, I delete the user with id "48"
 	Then The user should be deleted

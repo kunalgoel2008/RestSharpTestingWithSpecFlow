@@ -156,7 +156,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "injh",
                         "kj@hn.com",
                         "false",
-                        "12",
+                        "13",
                         "6411641C-F93C-4923-8D28-21FD0F36ADD6",
                         "asdf",
                         "sedr",
@@ -248,7 +248,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 36
- testRunner.Given("As an application user, I delete the user with id \"46\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("As an application user, I delete the user with id \"48\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 37
  testRunner.Then("The user should be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

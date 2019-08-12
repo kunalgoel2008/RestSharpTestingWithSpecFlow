@@ -28,14 +28,14 @@ namespace RestSharpTesting.Steps
             _settings.Response1 = _settings.Client.Execute(_settings.Request);
             _settings.user = new JsonDeserializer().Deserialize<List<dynamic>>(_settings.Response1);
 
-            foreach (var userDetails in _settings.user)
-            {
-                var _user1 = new User()
-                {
-                    Id = Convert.ToInt32(userDetails["Id"]),
-                    FirstName = (userDetails["FirstName"])
-                };
-            }
+            //foreach (var userDetails in _settings.user)
+            //{
+            //    _settings._user = new User()
+            //    {
+            //        Id = Convert.ToInt32(userDetails["Id"]),
+            //        FirstName = (userDetails["FirstName"])
+            //    };
+            //}
         }
 
         [Then(@"I should receive all available users")]
@@ -63,7 +63,7 @@ namespace RestSharpTesting.Steps
                 {
                     Id = Convert.ToInt32(_settings.user["id"]),
                     FirstName = _settings.user["first_name"],
-                    LastName = _settings.user["first_name"],
+                    LastName = _settings.user["last_name"],
                     PositionId = Convert.ToInt32(_settings.user["position_id"]),
                     MobileNo = _settings.user["mob_no"],
                     Alt_MobNo = _settings.user["alt_mob_no"],
@@ -163,9 +163,7 @@ namespace RestSharpTesting.Steps
                     Id = Convert.ToInt32(userDetails["Id"]),
                     FirstName = userDetails["FirstName"],
                     LastName = userDetails["LastName"],
-                    //PositionId = Convert.ToInt32(userDetails["PositionID"]),
                     MobileNo = userDetails["MobileNo"],
-                    //Alt_MobNo = userDetails["Alt_MobNO"],
                     Email = userDetails["Email"],
                     isDeleted = Convert.ToBoolean(userDetails["isDeleted"]),
                 };

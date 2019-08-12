@@ -159,12 +159,6 @@
   <ItemGroup>
     <Content Include="extent-config.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="C:\Users\kunal.goel\Source\Repos\ContactCardAPI\Contact.DataAccess\Contact.DataAccess.csproj">
-      <Project>{dd8bb5a3-1a1f-477a-a005-a08ab2aaa5bf}</Project>
-      <Name>Contact.DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
