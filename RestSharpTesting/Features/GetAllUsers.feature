@@ -6,8 +6,8 @@ Scenario: As an application user, When I fetch all user details
 
 
 Scenario: As an application user, When I fetch a particular user by Id
-	Given As an application user, I fetch details of user with Id "1"
-	Then I should receive the First Name as "Pranab"
+	Given As an application user, I fetch details of user with Id "2"
+	Then I should receive the First Name as "Kunal"
 
 
 Scenario: As an application user, When I fetch a particular user by Id with different Data Type
@@ -27,11 +27,11 @@ Scenario: As an application user, When I create a user without giving any detail
 
 Scenario: As an application user, When I create a user and fetch its details
 	Given As an application user, I will enter the below details
-	 | id | first_name | last_name | position_id | organisation_id | address_id | mob_no     |alt_mob_no  | email   | isDeleted | add_id | add_type                             | street_1 | street_2 | street_id | pin_code |
-	 | 4  | Kunal      | Goel      | 1           | 1               | 1          | 9999123987 | abcdefghij | a@g.com | false     | 2      | 6411641C-F93C-4923-8D28-21FD0F36ADD6 | ABC      | PQR      | 1         | 110098   | 
+	 | id | first_name | last_name | position_id | organisation_id | address_id | mob_no | alt_mob_no | email | isDeleted | add_id | add_type | street_1 | street_2 | street_id | pin_code |
+	 | 4  | Mamta      | Gupta     |1           | 1               | 1          | 9999123987 | abcdefghij | a@g.com | false     | 2      | 6411641C-F93C-4923-8D28-21FD0F36ADD6 | ABC      | PQR      | 1         | 110098   | 
 	And As an application user, I fetch details of the created user
 	Then I should get the correct details
 
 Scenario: As an application user, When I want to delete a user
-	Given As an application user, I delete the user with id "48"
+	Given As an application user, I delete the user with id "6"
 	Then The user should be deleted

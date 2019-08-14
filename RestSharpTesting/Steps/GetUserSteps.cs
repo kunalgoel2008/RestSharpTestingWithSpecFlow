@@ -16,7 +16,9 @@ namespace RestSharpTesting.Steps
         private Settings _settings;
         public GetUserSteps(Settings settings)
         {
+
             _settings = settings;
+
         }
 
      

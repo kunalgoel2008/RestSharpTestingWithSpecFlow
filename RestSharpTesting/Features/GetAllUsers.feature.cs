@@ -94,9 +94,9 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Given("As an application user, I fetch details of user with Id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("As an application user, I fetch details of user with Id \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.Then("I should receive the First Name as \"Pranab\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should receive the First Name as \"Kunal\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -214,8 +214,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "pin_code"});
             table2.AddRow(new string[] {
                         "4",
-                        "Kunal",
-                        "Goel",
+                        "Mamta",
+                        "Gupta",
                         "1",
                         "1",
                         "1",
@@ -248,7 +248,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 36
- testRunner.Given("As an application user, I delete the user with id \"48\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("As an application user, I delete the user with id \"6\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 37
  testRunner.Then("The user should be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
